@@ -1,6 +1,36 @@
 # modules
-# lines 1461 -> 1173
-# 1173 -> 1166
+"""
+ok so im gonna add the database thing
+
+usage:
+
+with open(f"file.json", "r") as f: data = json.load(f) #file must be opened in read mode
+
+def save(): #this function is for saving the user data
+  with open("file.json, "w+") as f: json.dump(data, f) #file must be opened in read + write mode
+  
+def addv(dic, key, valarr): #this function is for adding a list into the user data
+  if key not in dic: dic[key] = list()
+  dic[key].extend(valarr)
+
+add this in on_message:
+if str(message.author.id) not in data.keys(): addv(data, str(message.author.id), [0, 0]) #you can increase the amount of zeros in the array, depends how many entries you want
+
+accessing the values (user id must be a string):
+data[str(ctx.message.author.id)] #this will return the array
+data[str(ctx.message.author.id)][0] #this will return the first value in the array. If you want the second one just replace 0 with 1
+
+increasing the value;
+data[str(ctx.message.author.id)][0] += 69
+save() #remember to save the file before exiting the command
+
+for decreasing it you just use the operator -=
+
+accessing mentioned user data:
+def myCommand(ctx, user:discord.User):
+  if str(user.id) not in data.keys(): addv(data, str(user.id), [0, 0])
+  return await ctx.reply(data[str(user.id)][0])
+"""
 import random
 import json
 import os
